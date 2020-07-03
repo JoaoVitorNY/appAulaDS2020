@@ -19,15 +19,15 @@ if(!$conexao){
         );
     }else{
         $requestData['ativo'] = $requestData['ativo'] == "on" ? "S" : "N";
-        $requestData['categoria'] = date('Y-d-m H:i:s', strtotime($requestData['dataagora']));
+        $date = date_create_from_format('d/m/Y H:i:s', $requestData['dataagora']);
         $requestData['dataagora'] = date_format($date, 'Y-m-d H:i:s');
-        
+
         $sqlComando = "INSERT INTO CATEGORIAS(nome, ativo, datacriacao, datamodificacao) 
         VALUES('$requestData[nome]', '$requestData[ativo]', '$requestData[dataagora]', '$requestData[dataagora]')";
 
         $resultado = mysqli_query($conexao, $sqlComando);
 
-        if(!$resultado){
+        if($resultado){
             $dados = array(
                 'tipo' => 'success',
                 'mensagem' => 'Categoria cadastrada com sucesso!'
