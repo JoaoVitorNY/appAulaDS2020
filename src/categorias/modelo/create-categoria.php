@@ -7,7 +7,6 @@ if(!$conexao){
         'tipo' => 'info',
         'mensagem' => 'Não foi possível conectar ao banco de dados...'
     );
-
 }else{
     $requestData = $_REQUEST;
     //$requestData = array_map('utf8_decode', $requestData);
@@ -35,7 +34,7 @@ if(!$conexao){
         }else{
             $dados = array(
                 'tipo' => 'error',
-                'mensagem' => 'Não foi possível cadastrar categoria.'               
+                'mensagem' => 'Não foi possível cadastrar categoria.'.mysqli_error($conexao)               
             );
         }      
     }

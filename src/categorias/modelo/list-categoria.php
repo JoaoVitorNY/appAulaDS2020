@@ -6,7 +6,7 @@ if(!$conexao){
     $requestData = $_REQUEST;
     $colunas = $requestData['columns'];
 
-    $sql = "SELECT idcategoria, nome FROM CATEGORIAS WHERE 1=1";
+    $sql = "SELECT idcategoria, nome, date_format(datamodificacao,'%d/%m/%Y %H:%i:%s') as datamodificacao, ativo FROM CATEGORIAS WHERE 1=1 ";
 
     $resultado = mysqli_query($conexao, $sql);
     $linhas = mysqli_num_rows($resultado);
@@ -14,7 +14,7 @@ if(!$conexao){
     $filtro = $requestData['search']['value'];
     if(!empty($filtro)){
         $sql .= " AND (idcategoria LIKE '$filtro%' ";
-        $sql .= " OR name LIKE '$filtro%') ";
+        $sql .= " OR nome LIKE '$filtro%') ";
     }
 
     $resultado = mysqli_query($conexao, $sql);
@@ -27,7 +27,7 @@ if(!$conexao){
     $inicio = $requestData['start'];
     $tamanho = $requestData['length'];
 
-    $sql .= " ORDER BY $ordem $direcao LIMIT $inicio $tamanho ";
+    $sql .= " ORDER BY $ordem $direcao LIMIT $inicio $tamanho";
     $resultado = mysqli_query($conexao, $sql);
     
     $dados = array();
@@ -47,9 +47,9 @@ if(!$conexao){
 }else{
     $json_data = array(
         "draw" => 0,
-        "recordsTotal" => inval($linhas),
-        "recordsFiltrados" => inval($totalFiltrados),
-        "data" => $dados
+        "recordsTotal" => 0,
+        "recordsFiltrados" => 0,
+        "data" => array()
     );
 }
-echo json_encode($json_data);
+echo json_encode($json_data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
