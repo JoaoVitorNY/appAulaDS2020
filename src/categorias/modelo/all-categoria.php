@@ -10,7 +10,7 @@ if(!$conexao){
     );
 }else{
 
-    $sql = "SELECT idcategoria, nome * FROM categorias WHERE ativo = 'S'";
+    $sql = "SELECT idcategoria, nome FROM categorias WHERE ativo = 'S'";
     $resultado = mysqli_query($conexao, $sql);
 
     $dadosCategoria = array();
@@ -22,7 +22,7 @@ if(!$conexao){
 
         $dados = array(
             "tipo" => "success",
-            "mensagem" => "Não possível localizar a categoria.",
+            "mensagem" => "...",
             "dados" => $dadosCategoria
         );
     }else{
