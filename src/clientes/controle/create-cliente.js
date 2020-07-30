@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('.btn-save').click(function(e) {
         e.preventDefault()
 
-        let dados = $('#form-categoria').serialize()
+        let dados = $('#form-cliente').serialize()
 
         $('input[type=checkbox]').each(function() {
             if (!this.checked) {
@@ -15,7 +15,7 @@ $(document).ready(function() {
             dataType: 'json',
             assync: true,
             data: dados,
-            url: 'src/categorias/modelo/create-categoria.php',
+            url: 'src/clientes/modelo/create-cliente.php',
             success: function(dados) {
                 Swal.fire({
                     title: 'AppAulaDS',
@@ -28,7 +28,7 @@ $(document).ready(function() {
                     }
                 })
 
-                $('#modal-categoria').modal('hide')
+                $('#modal-cliente').modal('hide')
             }
         })
     })

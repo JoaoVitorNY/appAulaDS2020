@@ -1,21 +1,29 @@
 $(document).ready(function() {
 
-    $('#table-categoria').DataTable({
+    $('#table-cliente').DataTable({
         "processing": true,
         "serverSide": true,
         ajax: {
-            url: "src/categorias/modelo/list-categoria.php",
+            url: "src/clientes/modelo/list-cliente.php",
             type: "POST"
         },
         language: {
             url: "libs/DataTables/dataTables.brazil.json"
         },
         columns: [{
-                "data": 'idcategoria',
+                "data": 'idcliente',
                 "className": 'text-center'
             },
             {
                 "data": 'nome',
+                "className": 'text-center'
+            },
+            {
+                "data": 'email',
+                "className": 'text-center'
+            },
+            {
+                "data": 'telefone',
                 "className": 'text-center'
             },
             {
@@ -29,7 +37,7 @@ $(document).ready(function() {
             {
                 // O último elemento a ser instânciado em nossa DataTable são os nossos botões de ações, ou seja, devemos criar os elementos em tela para
                 // podermos executar as funções do CRUD.
-                data: 'idcategoria',
+                data: 'idcliente',
                 orderable: false, // Aqui iremos desabilitar a opção de ordenamento por essa coluna
                 searchable: false, // Aqui também iremos desabilitar a possibilidade de busca por essa coluna
                 className: 'text-center',

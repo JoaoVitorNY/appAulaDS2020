@@ -4,15 +4,15 @@ $(document).ready(function() {
 
         $('.modal-title').empty()
         $('.modal-body').empty()
-        $('.modal-title').append('Adicionar Categoria')
+        $('.modal-title').append('Adicionar Cliente')
 
         const datacriacao = new Date().toLocaleString()
 
-        $('.modal-body').load('src/categorias/visao/form-categoria.html', function() {
+        $('.modal-body').load('src/clientes/visao/form-cliente.html', function() {
             $('#dataagora').val(datacriacao)
         })
 
         $('.btn-save').show()
-        $('#modal-categoria').modal('show')
+        $('#modal-cliente').modal('show')
     })
 })

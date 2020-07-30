@@ -6,15 +6,17 @@ if(!$conexao){
     $requestData = $_REQUEST;
     $colunas = $requestData['columns'];
 
-    $sql = "SELECT idcategoria, nome, date_format(datamodificacao,'%d/%m/%Y %H:%i:%s') as datamodificacao, ativo FROM CATEGORIAS WHERE 1=1 ";
+    $sql = "SELECT idcliente, nome, email, telefone, date_format(datamodificacao,'%d/%m/%Y %H:%i:%s') as datamodificacao, ativo FROM CLIENTES WHERE 1=1 ";
 
     $resultado = mysqli_query($conexao, $sql);
     $linhas = mysqli_num_rows($resultado);
 
     $filtro = $requestData['search']['value'];
     if(!empty($filtro)){
-        $sql .= " AND (idcategoria LIKE '$filtro%' ";
+        $sql .= " AND (idcliente LIKE '$filtro%' ";
         $sql .= " OR nome LIKE '$filtro%') ";
+        $sql .= " OR email LIKE '$filtro%') ";
+        $sql .= " OR telefone LIKE '$filtro%') ";
     }
 
     $resultado = mysqli_query($conexao, $sql);
