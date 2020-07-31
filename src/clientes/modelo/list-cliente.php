@@ -6,7 +6,7 @@ if($conexao){
     $requestData = $_REQUEST;
     $colunas = $requestData['columns'];
 
-    $sql = "SELECT idcliente, nome, email, telefone, date_format(datamodificacao,'%d/%m/%Y %H:%i:%s') as datamodificacao, ativo FROM CLIENTES WHERE 1=1 ";
+    $sql = "SELECT idcliente, nome, email, telefone, date_format(datamodificacao,'%d/%m/%Y %H:%i:%s') as datamodificacao, ativo FROM clientes WHERE 1=1 ";
 
     $resultado = mysqli_query($conexao, $sql);
     $linhas = mysqli_num_rows($resultado);
@@ -42,7 +42,7 @@ if($conexao){
         "recordsTotal" => intval($linhas),
         "recordsFiltrados" => intval($totalFiltrados),
         "data" => $dados
-    )
+    );
 
     mysqli_close($conexao);
 

@@ -40,7 +40,7 @@ if($conexao){
         "recordsTotal" => intval($linhas),
         "recordsFiltrados" => intval($totalFiltrados),
         "data" => $dados
-    )
+    );
 
     mysqli_close($conexao);
 
