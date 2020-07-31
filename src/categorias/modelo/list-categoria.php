@@ -2,7 +2,7 @@
 
 include('../../banco/conexao.php');
 
-if(!$conexao){  
+if($conexao){  
     $requestData = $_REQUEST;
     $colunas = $requestData['columns'];
 
@@ -21,7 +21,7 @@ if(!$conexao){
     $totalFiltrados = mysqli_num_rows($resultado);
 
     $colunaOrdem = $requestData['order'][0]['column'];
-    $ordem = $colunas['$colunaOrdem']['data'];
+    $ordem = $colunas[$colunaOrdem]['data'];
     $direcao = $requestData['order'][0]['dir'];
 
     $inicio = $requestData['start'];
@@ -36,9 +36,9 @@ if(!$conexao){
     }
 
     $json_data = array(
-        "draw" => inval($requestData['draw']),
-        "recordsTotal" => inval($linhas),
-        "recordsFiltrados" => inval($totalFiltrados),
+        "draw" => intval($requestData['draw']),
+        "recordsTotal" => intval($linhas),
+        "recordsFiltrados" => intval($totalFiltrados),
         "data" => $dados
     )
 
